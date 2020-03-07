@@ -1,0 +1,35 @@
+body{
+    background-color:rgb(200, 217, 233);
+}
+
+.login-box{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 150px;
+    box-sizing: border-box;
+}
+.login-box h1{
+    background-color: aquamarine;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.textbox{
+    text-align: center;
+}
+#username{
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.submit-btn{
+    background-color: aquamarine;
+    padding: 13px;
+    margin: 20px;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
