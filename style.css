@@ -33,3 +33,18 @@ body{
     font-weight: bold;
     text-align: center;
 }
+.home-box{
+    box-sizing: border-box;
+    border: 2px solid antiquewhite;
+    background-color: lightgreen;
+}
+.post-box{
+    width: 75%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.album-box{
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
