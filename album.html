@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromisesLoginApp</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="login-box">
+        <div id="album-container"></div>
+        <a href="home.html"><h3>Back to User Homepage</h3></a>
+    </div>
+    
+    <script>
+        let albumContainer = document.getElementById('album-container');
+
+function fetchAlbum(userId){
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}/albums`)
+    .then((Res)=> Res.json())
+    .then(albums => albums.map(async (album) =>{
+    try{ 
+    if(album.userId == userId){
+        let photos = await fetchPhoto(album.id);
+        let h2 = document.createElement('h2');
+        h2.textContent = album.title;
+        let div = document.createElement('div');
+         photos.map(photo => {
+            if(photo.albumId == album.id){
+             let img = document.createElement('img');
+             img.src = photo.thumbnailUrl;
+             div.append(img);
+            } 
+        });
+        albumContainer.append(h2);
+        albumContainer.append(div);
+    }
+    }catch(err){
+        console.log(err)
+    }
+    })
+)};
+ async function fetchPhoto(albumId){
+     try{
+   let res = await fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
+   let photos = await res.json()
+    return photos;  
+    }catch(err) {
+        console.log(err)
+    }    
+ }
+    let user = JSON.parse(window.sessionStorage.getItem('user'));
+    fetchAlbum(user.userId);
+    </script>
+</body>
+
+</html>

@@ -15,19 +15,37 @@
     <div class="login-box">
         <h1>Login</h1>
     <div class="textbox">
-        <h3>User Name:</h3>
-        <input type="text" placeholder="Username" name="" id="username">
-        <button onclick="onSubmit()" class="submit-btn">Submit</button>
+        
+        <input type="text" placeholder="Username" name="" id="username" class="user-input">
+        <button onclick="onSubmit()" class="submit-btn" type="button">Submit</button>
     </div>
-       <div id="post-container">
-           
-       </div>
-        <div>
-            <h3>Album Titles:</h3>
-            <ul id="albums-title"></ul>
-        </div>
+        
 </div>
-    <script src="main.js"></script>
-</body>
+<script>
+    function onSubmit(){
+        let userName = document.getElementById('username').value;
+        fetchUser(userName);
+    }
 
+
+function fetchUser(username){
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then((Res)=> Res.json())
+    .then(users => users.map(user =>{ 
+    if(user.username == username){
+        
+        let userStorage = {
+            userName: user.name,
+            userId: user.id
+        }
+        console.log(userStorage)
+        window.sessionStorage.setItem('user', JSON.stringify(userStorage));
+        window.location.href = "home.html";
+    }
+}
+    )).catch(err => console.log(err));
+}
+
+    </script>
+</body>
 </html>

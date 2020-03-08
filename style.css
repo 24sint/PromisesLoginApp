@@ -17,7 +17,7 @@ body{
 .textbox{
     text-align: center;
 }
-#username{
+.user-input{
     width: 300px;
     text-align: center;
     padding: 10px;
